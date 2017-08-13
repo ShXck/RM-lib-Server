@@ -1,0 +1,30 @@
+#ifndef MEMORY_H_MEMORYHANDLER_H_
+#define MEMORY_H_MEMORYHANDLER_H_
+#include <iostream>
+#include <string>
+#include "../data_structs/Map.h"
+#include "../data_structs/LinkedList.h"
+#include "../utility.hpp"
+#include "../server_h/JSONHandler.h"
+#include "../error_handler.hpp"
+
+namespace mh {
+
+class Memory_Handler {
+public:
+	Memory_Handler();
+	void run_garbage_collector();
+	bool is_valid( const char* key );
+	std::string store_value( const char* key, std::string data );
+	std::string find_value( const char* key );
+	void replace_value( const char* key, void* new_value );
+	void delete_value( const char* key );
+	virtual ~Memory_Handler();
+private:
+	Map< const char*,  void* > saved_resources;
+	Linked_List< int > ref_counter;
+};
+
+} /* namespace mh */
+
+#endif /* MEMORY_H_MEMORYHANDLER_H_ */

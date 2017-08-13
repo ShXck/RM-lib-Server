@@ -1,0 +1,42 @@
+#include "Reader.h"
+
+Reader::Reader() {}
+
+void Reader::read( sf::Packet packet, sf::TcpSocket* socket ) {
+	std::string _request;
+	if( packet >> _request ) {
+		std::string d_request = _encrypter.apply( _request );    // Decrypts the message
+
+		std::cout << d_request << std::endl;
+
+		std::string _response = process( JSON_Handler::get_value( d_request.c_str(), "instruction" ).GetInt(), d_request );
+		sf::Packet response_packet;
+		response_packet << _encrypter.apply( _response );
+		socket->send( response_packet );
+	}
+}
+
+std::string Reader::process( int instruction, std::string data ) {
+
+	std::string return_msg;
+
+	std::string _key = JSON_Handler::get_value( data.c_str(), "key" ).GetString();
+
+	switch( instruction ) {
+	case NEW_INSTR: {
+		std::cout << "NEW" << std::endl;
+		break;
+	}
+	case GET_INSTR: {
+		std::cout << "GET" << std::endl;
+		break;
+	}
+	case DEL_INSTR: {
+		break;
+	}
+	}
+	return return_msg;
+}
+
+Reader::~Reader() { }
+

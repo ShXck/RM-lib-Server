@@ -1,0 +1,32 @@
+#ifndef MEMORY_H_MEMORYHANDLER_H_
+#define MEMORY_H_MEMORYHANDLER_H_
+#include "../data_structs/Map.h"
+#include <iostream>
+#include <string>
+
+struct Ref_Container {
+	int _size;
+	void* _value;
+	int ref_counter;
+	Ref_Container( int size, void* value ) : _size( size ), _value( value ), ref_counter( 0 ) {}
+
+	void add_ref() {
+		ref_counter++;
+	}
+
+	friend std::ostream& operator << ( std::ostream& strm, const Ref_Container& container ) {
+		strm << container._value;
+		return strm;
+	}
+};
+
+class Memory_Handler {
+public:
+	Memory_Handler();
+	static std::string store_value( const char* key, void* value );
+	virtual ~Memory_Handler();
+private:
+	Map< const char*, Ref_Container* > memory_map;
+};
+
+#endif /* MEMORY_H_MEMORYHANDLER_H_ */

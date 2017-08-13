@@ -1,0 +1,7 @@
+#include <iostream>
+#include "server_h/server.h"
+
+int main() {
+
+	return 0;
+}

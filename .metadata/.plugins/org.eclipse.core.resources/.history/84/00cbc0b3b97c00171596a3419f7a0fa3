@@ -1,0 +1,31 @@
+#ifndef SERVER_H_READER_H_
+#define SERVER_H_READER_H_
+
+#define NEW_INSTR 1
+#define GET_INSTR 2
+#define DEL_INSTR 3
+
+#include <string>
+#include <iostream>
+#include <SFML/Network.hpp>
+#include "Encrypter.h"
+#include "JSONHandler.h"
+#include "../error_handler.hpp"
+#include "../data_structs/Map.h"
+
+class Reader {
+public:
+	Reader();
+	void read( sf::Packet packet, sf::TcpSocket* socket );
+	virtual ~Reader();
+private:
+	std::string process( int instruction, std::string data );
+private:
+	Encrypter _encrypter;
+
+	Map < const char*, int > map;
+	int i;
+
+};
+
+#endif /* SERVER_H_READER_H_ */

@@ -1,0 +1,25 @@
+#include "RefContainer.h"
+
+namespace mh {
+
+Ref_Container::Ref_Container( void* value, std::size_t size ) : ref_counter( 0 ), _size( size ), _value( value ) { }
+
+void Ref_Container::increment_counter() {
+	ref_counter++;
+}
+
+void* Ref_Container::value() {
+	return _value;
+}
+
+std::size_t Ref_Container::size() {
+	return _size;
+}
+
+int Ref_Container::counter() {
+	return ref_counter;
+}
+
+Ref_Container::~Ref_Container() { }
+
+} /* namespace mh */

@@ -1,0 +1,17 @@
+/*
+ * MemoryHandler.h
+ *
+ *  Created on: Aug 8, 2017
+ *      Author: marcelo
+ */
+
+#ifndef MEMORY_H_MEMORYHANDLER_H_
+#define MEMORY_H_MEMORYHANDLER_H_
+
+class MemoryHandler {
+public:
+	MemoryHandler();
+	virtual ~MemoryHandler();
+};
+
+#endif /* MEMORY_H_MEMORYHANDLER_H_ */
