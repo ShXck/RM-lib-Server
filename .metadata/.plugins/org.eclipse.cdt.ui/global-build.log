@@ -1,4 +1,87 @@
-21:30:57 **** Incremental Build of configuration Debug for project Server ****
+20:20:08 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+20:20:10 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+20:21:12 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+20:22:17 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+20:22:55 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+20:23:24 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+20:28:16 **** Incremental Build of configuration Debug for project Server ****
+make all 
+Building file: ../src/memory_h/MemoryHandler.cpp
+Invoking: GCC C++ Compiler
+g++ -I/home/marcelo/Documents/libs/rapidjson/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/memory_h/MemoryHandler.d" -MT"src/memory_h/MemoryHandler.o" -o "src/memory_h/MemoryHandler.o" "../src/memory_h/MemoryHandler.cpp"
+Finished building: ../src/memory_h/MemoryHandler.cpp
+ 
+Building target: Server
+Invoking: GCC C++ Linker
+g++  -o "Server"  ./src/server_h/Encrypter.o ./src/server_h/JSONHandler.o ./src/server_h/Reader.o ./src/server_h/Server.o  ./src/memory_h/MemoryHandler.o  ./src/error_handler.o ./src/main.o ./src/utility.o   -lsfml-graphics -lpthread -lsfml-audio -lsfml-network -lsfml-window -lsfml-system
+Finished building target: Server
+ 
+20:30:23 **** Incremental Build of configuration Debug for project Server ****
+make all 
+Building file: ../src/memory_h/MemoryHandler.cpp
+Invoking: GCC C++ Compiler
+g++ -I/home/marcelo/Documents/libs/rapidjson/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/memory_h/MemoryHandler.d" -MT"src/memory_h/MemoryHandler.o" -o "src/memory_h/MemoryHandler.o" "../src/memory_h/MemoryHandler.cpp"
+Finished building: ../src/memory_h/MemoryHandler.cpp
+ 
+Building target: Server
+Invoking: GCC C++ Linker
+g++  -o "Server"  ./src/server_h/Encrypter.o ./src/server_h/JSONHandler.o ./src/server_h/Reader.o ./src/server_h/Server.o  ./src/memory_h/MemoryHandler.o  ./src/error_handler.o ./src/main.o ./src/utility.o   -lsfml-graphics -lpthread -lsfml-audio -lsfml-network -lsfml-window -lsfml-system
+Finished building target: Server
+ 
+20:32:25 **** Incremental Build of configuration Debug for project Server ****
+make all 
+Building file: ../src/memory_h/MemoryHandler.cpp
+Invoking: GCC C++ Compiler
+g++ -I/home/marcelo/Documents/libs/rapidjson/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/memory_h/MemoryHandler.d" -MT"src/memory_h/MemoryHandler.o" -o "src/memory_h/MemoryHandler.o" "../src/memory_h/MemoryHandler.cpp"
+Finished building: ../src/memory_h/MemoryHandler.cpp
+ 
+Building target: Server
+Invoking: GCC C++ Linker
+g++  -o "Server"  ./src/server_h/Encrypter.o ./src/server_h/JSONHandler.o ./src/server_h/Reader.o ./src/server_h/Server.o  ./src/memory_h/MemoryHandler.o  ./src/error_handler.o ./src/main.o ./src/utility.o   -lsfml-graphics -lpthread -lsfml-audio -lsfml-network -lsfml-window -lsfml-system
+Finished building target: Server
+ 
+20:33:29 **** Incremental Build of configuration Debug for project Server ****
+make all 
+Building file: ../src/memory_h/MemoryHandler.cpp
+Invoking: GCC C++ Compiler
+g++ -I/home/marcelo/Documents/libs/rapidjson/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/memory_h/MemoryHandler.d" -MT"src/memory_h/MemoryHandler.o" -o "src/memory_h/MemoryHandler.o" "../src/memory_h/MemoryHandler.cpp"
+../src/memory_h/MemoryHandler.cpp: In member function ‘std::__cxx11::string Memory_Handler::find_value_set(std::__cxx11::string)’:
+../src/memory_h/MemoryHandler.cpp:60:2: error: expected ‘;’ before ‘return’
+  return "message test";
+  ^~~~~~
+../src/memory_h/MemoryHandler.cpp:61:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+src/memory_h/subdir.mk:18: recipe for target 'src/memory_h/MemoryHandler.o' failed
+make: *** [src/memory_h/MemoryHandler.o] Error 1
+20:33:42 **** Incremental Build of configuration Debug for project Server ****
+make all 
+Building file: ../src/memory_h/MemoryHandler.cpp
+Invoking: GCC C++ Compiler
+g++ -I/home/marcelo/Documents/libs/rapidjson/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/memory_h/MemoryHandler.d" -MT"src/memory_h/MemoryHandler.o" -o "src/memory_h/MemoryHandler.o" "../src/memory_h/MemoryHandler.cpp"
+Finished building: ../src/memory_h/MemoryHandler.cpp
+ 
+Building target: Server
+Invoking: GCC C++ Linker
+g++  -o "Server"  ./src/server_h/Encrypter.o ./src/server_h/JSONHandler.o ./src/server_h/Reader.o ./src/server_h/Server.o  ./src/memory_h/MemoryHandler.o  ./src/error_handler.o ./src/main.o ./src/utility.o   -lsfml-graphics -lpthread -lsfml-audio -lsfml-network -lsfml-window -lsfml-system
+Finished building target: Server
+ 
+20:40:26 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+20:52:54 **** Incremental Build of configuration Debug for project Server ****
 make all 
 Building file: ../src/server_h/JSONHandler.cpp
 Invoking: GCC C++ Compiler
@@ -13,21 +96,12 @@ Finished building: ../src/server_h/Reader.cpp
 Building file: ../src/server_h/Server.cpp
 Invoking: GCC C++ Compiler
 g++ -I/home/marcelo/Documents/libs/rapidjson/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/server_h/Server.d" -MT"src/server_h/Server.o" -o "src/server_h/Server.o" "../src/server_h/Server.cpp"
-../src/server_h/Server.cpp: In member function ‘void Server::run()’:
-../src/server_h/Server.cpp:20:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     for( int i = 0; i < active_clients.size(); i++ ) {
-                     ~~^~~~~~~~~~~~~~~~~~~~~~~
 Finished building: ../src/server_h/Server.cpp
  
 Building file: ../src/memory_h/MemoryHandler.cpp
 Invoking: GCC C++ Compiler
 g++ -I/home/marcelo/Documents/libs/rapidjson/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/memory_h/MemoryHandler.d" -MT"src/memory_h/MemoryHandler.o" -o "src/memory_h/MemoryHandler.o" "../src/memory_h/MemoryHandler.cpp"
 Finished building: ../src/memory_h/MemoryHandler.cpp
- 
-Building file: ../src/error_handler.cpp
-Invoking: GCC C++ Compiler
-g++ -I/home/marcelo/Documents/libs/rapidjson/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/error_handler.d" -MT"src/error_handler.o" -o "src/error_handler.o" "../src/error_handler.cpp"
-Finished building: ../src/error_handler.cpp
  
 Building file: ../src/main.cpp
 Invoking: GCC C++ Compiler
@@ -39,6 +113,30 @@ Invoking: GCC C++ Linker
 g++  -o "Server"  ./src/server_h/Encrypter.o ./src/server_h/JSONHandler.o ./src/server_h/Reader.o ./src/server_h/Server.o  ./src/memory_h/MemoryHandler.o  ./src/error_handler.o ./src/main.o ./src/utility.o   -lsfml-graphics -lpthread -lsfml-audio -lsfml-network -lsfml-window -lsfml-system
 Finished building target: Server
  
-23:13:35 **** Incremental Build of configuration Debug for project Server ****
+20:54:04 **** Incremental Build of configuration Debug for project Server ****
+make all 
+Building file: ../src/memory_h/MemoryHandler.cpp
+Invoking: GCC C++ Compiler
+g++ -I/home/marcelo/Documents/libs/rapidjson/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/memory_h/MemoryHandler.d" -MT"src/memory_h/MemoryHandler.o" -o "src/memory_h/MemoryHandler.o" "../src/memory_h/MemoryHandler.cpp"
+Finished building: ../src/memory_h/MemoryHandler.cpp
+ 
+Building target: Server
+Invoking: GCC C++ Linker
+g++  -o "Server"  ./src/server_h/Encrypter.o ./src/server_h/JSONHandler.o ./src/server_h/Reader.o ./src/server_h/Server.o  ./src/memory_h/MemoryHandler.o  ./src/error_handler.o ./src/main.o ./src/utility.o   -lsfml-graphics -lpthread -lsfml-audio -lsfml-network -lsfml-window -lsfml-system
+Finished building target: Server
+ 
+21:02:04 **** Incremental Build of configuration Debug for project Server ****
 make all 
 make: Nothing to be done for 'all'.
+21:03:52 **** Incremental Build of configuration Debug for project Server ****
+make all 
+Building file: ../src/server_h/JSONHandler.cpp
+Invoking: GCC C++ Compiler
+g++ -I/home/marcelo/Documents/libs/rapidjson/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/server_h/JSONHandler.d" -MT"src/server_h/JSONHandler.o" -o "src/server_h/JSONHandler.o" "../src/server_h/JSONHandler.cpp"
+Finished building: ../src/server_h/JSONHandler.cpp
+ 
+Building target: Server
+Invoking: GCC C++ Linker
+g++  -o "Server"  ./src/server_h/Encrypter.o ./src/server_h/JSONHandler.o ./src/server_h/Reader.o ./src/server_h/Server.o  ./src/memory_h/MemoryHandler.o  ./src/error_handler.o ./src/main.o ./src/utility.o   -lsfml-graphics -lpthread -lsfml-audio -lsfml-network -lsfml-window -lsfml-system
+Finished building target: Server
+ 

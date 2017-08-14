@@ -4,6 +4,8 @@
 #define NEW_INSTR 1
 #define GET_INSTR 2
 #define DEL_INSTR 3
+#define GET_SET_INSTR 4
+#define REPLC_INSTR 5
 
 #include <string>
 #include <iostream>

@@ -8,9 +8,7 @@ template <class T>
 struct Node_L {
 	T _data;
 	Node_L < T > *_next;
-	Node_L ( T data ):_data( data ) {
-		_next = nullptr;
-	}
+	Node_L ( T data ):_data( data ), _next( nullptr ) { }
 };
 
 template < class T >
@@ -25,10 +23,7 @@ private:
 		delete _temp;
 	}
 public:
-	Linked_List() {
-		_head = nullptr;
-		_size = 0;
-	}
+	Linked_List() : _head( nullptr ), _size( 0 ) { }
 
 	void add( T data ) {
 		Node_L< T >* _new = new Node_L< T >( data );
@@ -108,21 +103,21 @@ public:
 		return false;
 	}
 
-	T& get( int pos ) {
+    T& get( int pos ) {
 
-		if( pos > _size || pos < 0 || is_empty() ){
-			throw std::invalid_argument( "Impossible action. Invalid position value" );
-		} else {
-			Node_L< T > *_current = _head;
+        if( pos > _size || pos < 0 || is_empty() ){
+            throw std::invalid_argument( "Impossible action. Invalid position value" );
+        } else {
+            Node_L< T > *_current = _head;
 
-			int i = 0;
-			while( i < (pos - 1) ) {
-				_current = _current->_next;
-				i++;
-			}
-			return _current->_next;
-		}
-	}
+            int i = 0;
+            while( i < pos ) {
+                _current = _current->_next;
+                i++;
+            }
+            return _current->_data;
+        }
+    }
 
 	T* peek() {
 		if( is_empty() ) {

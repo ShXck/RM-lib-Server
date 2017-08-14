@@ -17,7 +17,7 @@ void Server::run() {
 				_selector.add( *_socket );
 				std::cout << "New app online" << std::endl;
 			} else {
-				for( int i = 0; i < active_clients.size(); i++ ) {
+				for( unsigned int i = 0; i < active_clients.size(); i++ ) {
 					if( _selector.isReady( *active_clients[i] ) ){
 						sf::Packet _packet;
 						if( active_clients[i]->receive( _packet ) == sf::Socket::Done ) {

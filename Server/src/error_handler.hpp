@@ -8,6 +8,7 @@ namespace error {
 	std::string key_not_found_err();
 	std::string key_is_valid();
 	std::string key_found();
+	std::string doc_parse_err();
 }
 
 

@@ -18,6 +18,10 @@ namespace error {
 		return "The value associated to this key is valid";
 	}
 
+	std::string doc_parse_err() {
+		return "The data could not be parsed.";
+	}
+
 }
 
 

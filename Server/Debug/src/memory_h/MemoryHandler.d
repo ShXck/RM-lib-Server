@@ -30,7 +30,10 @@ src/memory_h/MemoryHandler.o: ../src/memory_h/MemoryHandler.cpp \
  /home/marcelo/Documents/libs/rapidjson/include/rapidjson/internal/itoa.h \
  /home/marcelo/Documents/libs/rapidjson/include/rapidjson/internal/itoa.h \
  /home/marcelo/Documents/libs/rapidjson/include/rapidjson/stringbuffer.h \
- /home/marcelo/Documents/libs/rapidjson/include/rapidjson/stringbuffer.h
+ /home/marcelo/Documents/libs/rapidjson/include/rapidjson/stringbuffer.h \
+ ../src/memory_h/../server_h/../data_structs/LinkedList.h \
+ ../src/memory_h/../server_h/../memory_h/MemoryHandler.h \
+ ../src/memory_h/../data_structs/LinkedList.h
 
 ../src/memory_h/MemoryHandler.h:
 
@@ -99,3 +102,9 @@ src/memory_h/MemoryHandler.o: ../src/memory_h/MemoryHandler.cpp \
 /home/marcelo/Documents/libs/rapidjson/include/rapidjson/stringbuffer.h:
 
 /home/marcelo/Documents/libs/rapidjson/include/rapidjson/stringbuffer.h:
+
+../src/memory_h/../server_h/../data_structs/LinkedList.h:
+
+../src/memory_h/../server_h/../memory_h/MemoryHandler.h:
+
+../src/memory_h/../data_structs/LinkedList.h:

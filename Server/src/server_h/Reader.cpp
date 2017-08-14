@@ -26,7 +26,7 @@ std::string Reader::process( int instruction, std::string data, Memory_Handler* 
 	std::string _key = JSON_Handler::get_value( data.c_str(), "key" ).GetString();
 
 	switch( instruction ) {
-		case 1: {
+		case NEW_INSTR: {
 			std::string _val = JSON_Handler::get_value( data.c_str(), "value" ).GetString();
 			int _size = JSON_Handler::get_value( data.c_str(), "size" ).GetInt();
 			return_msg = handler->store_value( _key, _val, _size );
@@ -37,7 +37,14 @@ std::string Reader::process( int instruction, std::string data, Memory_Handler* 
 			break;
 		}
 		case DEL_INSTR: {
-
+			return_msg = handler->delete_value( _key );
+			break;
+		}
+		case GET_SET_INSTR: {
+			return_msg = handler->find_value_set( data );
+			break;
+		}
+		case REPLC_INSTR: {
 			break;
 		}
 	}

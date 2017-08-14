@@ -37,8 +37,6 @@ std::string JSON_Handler::build_get_msg( const char* key, std::string value, int
 	_doc.SetObject();
 	Alloc _alloc = _doc.GetAllocator();
 
-	//std::string* casted_str = static_cast< std::string* > ( value );
-
 	{
 		rapidjson::Value str_key;
 		str_key.SetString( key, _alloc );
@@ -61,6 +59,38 @@ std::string JSON_Handler::build_get_msg( const char* key, std::string value, int
 	return str_buffer.GetString();
 }
 
+std::string JSON_Handler::build_set_msg( Linked_List< std::string > keys, Linked_List< std::string > values ) {
+
+	rapidjson::Document _doc;
+	_doc.SetObject();
+	Alloc _alloc = _doc.GetAllocator();
+
+	rapidjson::Value val_array( rapidjson::kArrayType );
+
+	for( int i = 0; i < keys.size(); i++ ) {
+		rapidjson::Value _pair( rapidjson::kObjectType );
+
+		rapidjson::Value str_key;
+		str_key.SetString( keys.get( i ).c_str(), _alloc );
+
+		rapidjson::Value str_value;
+		str_value.SetString( values.get( i ).c_str(), _alloc );
+
+		_pair.AddMember( "key", str_key, _alloc );
+		_pair.AddMember( "value", str_value, _alloc );
+
+		val_array.PushBack( _pair, _alloc );
+	}
+	_doc.AddMember( "value_set", val_array, _alloc );
+	_doc.AddMember( "instruction", 4, _alloc );
+
+	rapidjson::StringBuffer str_buffer;
+	Writer _writer( str_buffer );
+	_doc.Accept( _writer );
+
+	return str_buffer.GetString();
+}
+
 rapidjson::Value& JSON_Handler::get_value( const char* json, const char* json_key ) {
 
 	rapidjson::Document _doc;
@@ -75,6 +105,29 @@ rapidjson::Value& JSON_Handler::get_value( const char* json, const char* json_ke
 
 	return _val;
 }
+
+Linked_List < std::string > JSON_Handler::process_array( const char* data, const char* arr_key ) {
+
+	rapidjson::Document _doc;
+	Alloc _alloc = _doc.GetAllocator();
+
+	Linked_List< std::string > keys_list;
+
+	if( !(_doc.Parse<0>( data ).HasParseError() ) ) {
+		rapidjson::Value str_key;
+		str_key.SetString( arr_key, _alloc );
+		const rapidjson::Value& _keys = _doc[ str_key ];
+
+		for( rapidjson::SizeType i = 0; i < _keys.Size(); i++ ) {
+			const rapidjson::Value& _key = _keys[ i ];
+			keys_list.add( _key.GetString() );
+		}
+		return keys_list;
+	}
+	return keys_list;
+}
+
+
 
 JSON_Handler::~JSON_Handler() { }
 

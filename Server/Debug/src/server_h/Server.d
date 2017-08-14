@@ -30,13 +30,15 @@ src/server_h/Server.o: ../src/server_h/Server.cpp \
  /home/marcelo/Documents/libs/rapidjson/include/rapidjson/internal/itoa.h \
  /home/marcelo/Documents/libs/rapidjson/include/rapidjson/stringbuffer.h \
  /home/marcelo/Documents/libs/rapidjson/include/rapidjson/stringbuffer.h \
- ../src/server_h/../error_handler.hpp \
- ../src/server_h/../data_structs/Map.h \
+ ../src/server_h/../data_structs/LinkedList.h \
  ../src/server_h/../memory_h/MemoryHandler.h \
  ../src/server_h/../memory_h/../data_structs/Map.h \
  ../src/server_h/../memory_h/../utility.hpp \
  ../src/server_h/../memory_h/../error_handler.hpp \
- ../src/server_h/../memory_h/../server_h/JSONHandler.h
+ ../src/server_h/../memory_h/../server_h/JSONHandler.h \
+ ../src/server_h/../memory_h/../data_structs/LinkedList.h \
+ ../src/server_h/../error_handler.hpp \
+ ../src/server_h/../data_structs/Map.h
 
 ../src/server_h/Server.h:
 
@@ -104,9 +106,7 @@ src/server_h/Server.o: ../src/server_h/Server.cpp \
 
 /home/marcelo/Documents/libs/rapidjson/include/rapidjson/stringbuffer.h:
 
-../src/server_h/../error_handler.hpp:
-
-../src/server_h/../data_structs/Map.h:
+../src/server_h/../data_structs/LinkedList.h:
 
 ../src/server_h/../memory_h/MemoryHandler.h:
 
@@ -117,3 +117,9 @@ src/server_h/Server.o: ../src/server_h/Server.cpp \
 ../src/server_h/../memory_h/../error_handler.hpp:
 
 ../src/server_h/../memory_h/../server_h/JSONHandler.h:
+
+../src/server_h/../memory_h/../data_structs/LinkedList.h:
+
+../src/server_h/../error_handler.hpp:
+
+../src/server_h/../data_structs/Map.h:

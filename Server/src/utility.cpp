@@ -20,6 +20,10 @@ namespace util {
 		return true;
 	}
 
+	std::string itos( int i ) {
+		return std::to_string( i );
+	}
+
 }
 
 
