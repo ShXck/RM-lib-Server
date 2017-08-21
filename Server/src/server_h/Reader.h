@@ -6,6 +6,7 @@
 #define DEL_INSTR 3
 #define GET_SET_INSTR 4
 #define REPLC_INSTR 5
+#define DC_INSTR 6
 
 #include <string>
 #include <iostream>

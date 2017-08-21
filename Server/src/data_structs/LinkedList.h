@@ -87,6 +87,31 @@ public:
 		_size--;
 	}
 
+	void remove( T data ) {
+
+		std::runtime_error not_found( "Element not found" );
+
+		if( is_empty() ) {
+			throw not_found;
+		} else if( _head->_data == data ) {
+			remove_head();
+		} else {
+			Node_L<T> *_current = _head;
+			while( _current->_next != nullptr ) {
+				if( _current->_next->_data == data ){
+					Node_L<T> *_temp = _current->_next;
+					_current->_next = _current->_next->_next;
+					delete _temp;
+					_size--;
+					return;
+				} else {
+					_current = _current->_next;
+				}
+			}
+			throw not_found;
+		}
+	}
+
 	bool contains( T val ) {
 		if( is_empty() ) {
 			return false;
@@ -101,6 +126,28 @@ public:
 			}
 		}
 		return false;
+	}
+
+	unsigned int get_index_of( T data ) {
+
+		std::runtime_error not_found( "Element not found" );
+
+		if( is_empty() ) {
+			throw not_found;
+		} else if ( _head->_data == data ) {
+			return 0;
+		} else {
+			unsigned int _index = 0;
+			Node_L < T >* _current = _head;
+			while( _current != nullptr ) {
+				if( _current->_data == data ) {
+					return _index;
+				}
+				_current = _current->_next;
+				_index++;
+			}
+			return _index;
+		}
 	}
 
     T& get( int pos ) {

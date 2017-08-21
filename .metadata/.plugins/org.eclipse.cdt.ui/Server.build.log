@@ -1,15 +1,6 @@
-21:03:52 **** Incremental Build of configuration Debug for project Server ****
+20:37:19 **** Incremental Build of configuration Debug for project Server ****
 make all 
-Building file: ../src/server_h/JSONHandler.cpp
-Invoking: GCC C++ Compiler
-g++ -I/home/marcelo/Documents/libs/rapidjson/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/server_h/JSONHandler.d" -MT"src/server_h/JSONHandler.o" -o "src/server_h/JSONHandler.o" "../src/server_h/JSONHandler.cpp"
-Finished building: ../src/server_h/JSONHandler.cpp
- 
-Building target: Server
-Invoking: GCC C++ Linker
-g++  -o "Server"  ./src/server_h/Encrypter.o ./src/server_h/JSONHandler.o ./src/server_h/Reader.o ./src/server_h/Server.o  ./src/memory_h/MemoryHandler.o  ./src/error_handler.o ./src/main.o ./src/utility.o   -lsfml-graphics -lpthread -lsfml-audio -lsfml-network -lsfml-window -lsfml-system
-Finished building target: Server
- 
+make: Nothing to be done for 'all'.
 
-21:03:57 Build Finished (took 4s.839ms)
+20:37:20 Build Finished (took 105ms)
 

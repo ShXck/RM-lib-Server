@@ -31,7 +31,7 @@ std::string JSON_Handler::build_msg( bool error, std::string msg ) {
 
 }
 
-std::string JSON_Handler::build_get_msg( const char* key, std::string value, int size ) {
+std::string JSON_Handler::build_get_msg( const char* key, const char* value, int size ) {
 
 	rapidjson::Document _doc;
 	_doc.SetObject();
@@ -45,7 +45,7 @@ std::string JSON_Handler::build_get_msg( const char* key, std::string value, int
 
 	{
 		rapidjson::Value value_str;
-		value_str.SetString( value.c_str(), _alloc );
+		value_str.SetString( value, _alloc );
 		_doc.AddMember( "value", value_str, _alloc );
 	}
 
@@ -59,7 +59,7 @@ std::string JSON_Handler::build_get_msg( const char* key, std::string value, int
 	return str_buffer.GetString();
 }
 
-std::string JSON_Handler::build_set_msg( Linked_List< std::string > keys, Linked_List< std::string > values ) {
+std::string JSON_Handler::build_set_msg( Linked_List< char* > keys, Linked_List< char* > values ) {
 
 	rapidjson::Document _doc;
 	_doc.SetObject();
@@ -71,10 +71,10 @@ std::string JSON_Handler::build_set_msg( Linked_List< std::string > keys, Linked
 		rapidjson::Value _pair( rapidjson::kObjectType );
 
 		rapidjson::Value str_key;
-		str_key.SetString( keys.get( i ).c_str(), _alloc );
+		str_key.SetString( keys.get( i ), _alloc );
 
 		rapidjson::Value str_value;
-		str_value.SetString( values.get( i ).c_str(), _alloc );
+		str_value.SetString( values.get( i ), _alloc );
 
 		_pair.AddMember( "key", str_key, _alloc );
 		_pair.AddMember( "value", str_value, _alloc );
@@ -106,12 +106,12 @@ rapidjson::Value& JSON_Handler::get_value( const char* json, const char* json_ke
 	return _val;
 }
 
-Linked_List < std::string > JSON_Handler::process_array( const char* data, const char* arr_key ) {
+Linked_List < char* > JSON_Handler::process_array( const char* data, const char* arr_key ) {
 
 	rapidjson::Document _doc;
 	Alloc _alloc = _doc.GetAllocator();
 
-	Linked_List< std::string > keys_list;
+	Linked_List< char* > keys_list;
 
 	if( !(_doc.Parse<0>( data ).HasParseError() ) ) {
 		rapidjson::Value str_key;
@@ -120,7 +120,7 @@ Linked_List < std::string > JSON_Handler::process_array( const char* data, const
 
 		for( rapidjson::SizeType i = 0; i < _keys.Size(); i++ ) {
 			const rapidjson::Value& _key = _keys[ i ];
-			keys_list.add( _key.GetString() );
+			keys_list.add( strdup( _key.GetString() ) );
 		}
 		return keys_list;
 	}

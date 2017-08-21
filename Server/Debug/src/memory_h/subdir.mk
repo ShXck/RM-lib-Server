@@ -4,12 +4,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/memory_h/Cache.cpp \
 ../src/memory_h/MemoryHandler.cpp 
 
 OBJS += \
+./src/memory_h/Cache.o \
 ./src/memory_h/MemoryHandler.o 
 
 CPP_DEPS += \
+./src/memory_h/Cache.d \
 ./src/memory_h/MemoryHandler.d 
 
 

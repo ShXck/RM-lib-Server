@@ -1,17 +1,16 @@
 #ifndef DATA_STRUCTS_MAP_H_
 #define DATA_STRUCTS_MAP_H_
 #include <iostream>
-#include <cstdio>
-#include <cstdlib>
+#include <stdio.h>
+#include <stdlib.h>
+#include <cstring>
 
 template < typename Key, typename Value >
 struct Node {
 	Value _data;
 	Key _key;
 	Node < Key, Value > *_next;
-	Node ( Key key, Value data ):_data( data ), _key( key ) {
-		_next = nullptr;
-	}
+	Node ( Key key, Value data ):_data( data ), _key( key ), _next( nullptr ) { }
 };
 
 template < typename Key, typename Value >
@@ -24,15 +23,15 @@ private:
 		Node< Key, Value > *_temp = _head;
 		_head = _head->_next;
 		delete _temp;
+		//free( _temp );
 	}
+
 public:
-	Map() {
-		_head = nullptr;
-		_size = 0;
-	}
+	Map() : _head( nullptr ), _size( 0 ) { }
 
 	void add( Key key, Value data ) {
 		Node< Key, Value >* _new = new Node< Key, Value >( key, data );
+		//Node< Key, Value >* _new = create_node( key, data );
 		if( is_empty() ) {
 			_head = _new;
 		} else {
@@ -47,6 +46,7 @@ public:
 
 	void add_first( Key key, Value data ) {
 		Node< Key, Value >* _new = new Node< Key, Value >( key, data );
+		//Node< Key, Value >* _new = create_node( key, data );
 		if( is_empty() ) {
 			_head = _new;
 		} else {
@@ -58,6 +58,7 @@ public:
 
 	void add_at( int pos, Key key, Value data ) {
 		Node< Key, Value >* _new = new Node< Key, Value >( key, data );
+		//Node< Key, Value >* _new = create_node( key, data );
 
 		if( pos > _size || pos < 0 || (is_empty() && pos != 0) ){
 			throw std::invalid_argument( "Impossible action. Invalid position value" );
@@ -101,7 +102,7 @@ public:
 	}
 
 	void remove_at( int pos ) {
-		if( pos > _size || pos < 0 || (is_empty() && pos != 0) ){
+		if( pos > _size || pos < 0 || ( is_empty() && pos != 0 ) ){
 			throw std::invalid_argument( "Imposible action. Invalid position value" );
 		} else if( pos == 0 ) {
 			remove_head();
@@ -115,6 +116,7 @@ public:
 			Node< Key, Value > *_temp = _current->_next;
 			_current->_next = _current->_next->_next;
 			delete _temp;
+			//free( _temp );
 		}
 		_size--;
 	}
@@ -153,6 +155,22 @@ public:
 		throw not_found;
 	}
 
+    Value& get( int pos ) {
+
+        if( pos > _size || pos < 0 || is_empty() ){
+            throw std::invalid_argument( "Impossible action. Invalid position value" );
+        } else {
+            Node< Key, Value > *_current = _head;
+
+            int i = 0;
+            while( i < pos ) {
+                _current = _current->_next;
+                i++;
+            }
+            return _current->_data;
+        }
+    }
+
 	Value* peek() {
 		if( is_empty() ) {
 			return nullptr;
@@ -180,6 +198,22 @@ public:
 
 	const int& size() const {
 		return _size;
+	}
+
+	void clear() {
+		while( !is_empty() ) {
+			remove_at( 0 );
+		}
+	}
+
+	Node< Key,Value >* head() {
+		return _head;
+	}
+
+	~Map() {
+		while( !is_empty() ) {
+			remove_at( 0 );
+		}
 	}
 };
 

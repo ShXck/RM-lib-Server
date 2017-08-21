@@ -7,7 +7,7 @@ void Reader::read( sf::Packet packet, sf::TcpSocket* socket, Memory_Handler* han
 	std::string _request;
 	if( packet >> _request ) {
 
-		std::string d_request = _encrypter.apply( _request );    // Decrypts the message
+		std::string d_request = _encrypter.apply( _request );
 
 		std::cout << d_request << std::endl;
 
@@ -29,22 +29,29 @@ std::string Reader::process( int instruction, std::string data, Memory_Handler* 
 		case NEW_INSTR: {
 			std::string _val = JSON_Handler::get_value( data.c_str(), "value" ).GetString();
 			int _size = JSON_Handler::get_value( data.c_str(), "size" ).GetInt();
-			return_msg = handler->store_value( _key, _val, _size );
+			std::string c_id = JSON_Handler::get_value( data.c_str(), "id" ).GetString();
+			return_msg = handler->store_value( strdup( _key.c_str() ), strdup( _val.c_str() ), strdup( c_id.c_str() ), _size );
 			break;
 		}
 		case GET_INSTR: {
-			return_msg = handler->find_value( _key );
+			return_msg = handler->find_value( strdup( _key.c_str() ) );
 			break;
 		}
 		case DEL_INSTR: {
-			return_msg = handler->delete_value( _key );
+			return_msg = handler->delete_value( strdup( _key.c_str() ) );
 			break;
 		}
 		case GET_SET_INSTR: {
-			return_msg = handler->find_value_set( data );
+			return_msg = handler->find_value_set( strdup( data.c_str() ) );
 			break;
 		}
 		case REPLC_INSTR: {
+			std::string new_data = JSON_Handler::get_value( data.c_str(), "new_value" ).GetString();
+			return_msg = handler->replace_value( strdup( _key.c_str() ), strdup( new_data .c_str() ) );
+			break;
+		}
+		case DC_INSTR: {
+			handler->delete_from( strdup( _key.c_str() ) );
 			break;
 		}
 	}

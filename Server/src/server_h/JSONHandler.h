@@ -14,10 +14,10 @@ public:
 	JSON_Handler();
 	static std::string build_msg( bool error, std::string msg );
 	static std::string process_deleted( const char* json );
-	static std::string build_get_msg( const char* key, std::string value, int size );
-	static std::string build_set_msg( Linked_List< std::string > keys, Linked_List< std::string > values );
+	static std::string build_get_msg( const char* key, const char* value, int size );
+	static std::string build_set_msg( Linked_List< char* > keys, Linked_List< char* > values );
 	static rapidjson::Value& get_value( const char* json, const char* json_key );
-	static Linked_List < std::string > process_array( const char* data, const char* arr_key );
+	static Linked_List < char* > process_array( const char* data, const char* arr_key );
 	virtual ~JSON_Handler();
 };
 
