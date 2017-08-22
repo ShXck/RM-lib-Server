@@ -7,7 +7,7 @@
 struct Cache_Resource_Container {
 	unsigned int cache_counter;
 	char* _value;
-	Cache_Resource_Container( char* value ) : cache_counter( 0 ), _value( value ) {}
+	Cache_Resource_Container( char* value, unsigned int counter ) : cache_counter( counter ), _value( value ) {}
 
 	friend std::ostream& operator << ( std::ostream& strm, const Cache_Resource_Container& container ) {
 		strm << container._value;
@@ -20,7 +20,7 @@ class Cache {
 	typedef Linked_List< std::pair< std::string, char* > > list;
 public:
 	Cache( u_int capacity );
-	void add( std::string key, char* value );
+	void add( std::string key, char* value, u_int counter );
 	void update();
 	bool contains( std::string key );
 	char* get( std::string key );
@@ -29,7 +29,7 @@ public:
 	bool is_full();
 	virtual ~Cache();
 private:
-	Cache_Resource_Container create_container( char* value );
+	Cache_Resource_Container create_container( char* value, u_int counter );
 private:
 	u_int _capacity;
 	Map< std::string, Cache_Resource_Container > cache_memory;

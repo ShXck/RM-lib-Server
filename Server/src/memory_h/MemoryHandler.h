@@ -1,6 +1,7 @@
 #ifndef MEMORY_H_MEMORYHANDLER_H_
 #define MEMORY_H_MEMORYHANDLER_H_
 #define CACHE_CAPACITY 5
+#define CACHE_PERIOD 30
 #include "../data_structs/Map.h"
 #include <iostream>
 #include <string>
@@ -9,13 +10,16 @@
 #include "../server_h/JSONHandler.h"
 #include "../data_structs/LinkedList.h"
 #include "Cache.h"
+#include <chrono>
+#include <thread>
+#include <future>
 
 struct RmRef_h {
 	int _size;
 	char* _value;
 	int ref_counter;
 	char* client_id;
-	RmRef_h( int size, char* value, char* c_id ) : _size( size ), _value( value ), ref_counter( 1 ), client_id( c_id ) {}
+	RmRef_h( int size, char* value, char* c_id ) : _size( size ), _value( value ), ref_counter( 4 ), client_id( c_id ) {}
 
 	void add_ref() {
 		ref_counter++;
@@ -32,20 +36,25 @@ struct Unused_Ref {
 	std::string _key;
 	Unused_Ref( std::string key ) : tmp_counter( 0 ), _key( key ) {}
 
-	bool operator == ( const Unused_Ref& u_1, const Unused_Ref& u_2 ) {
-		if( u_1._key == u_2._key ) {
+	bool operator == ( const Unused_Ref& u_ref ) {
+		if( u_ref._key == _key ) {
 			return true;
 		}
 		return false;
 	}
 
-	bool operator != ( const Unused_Ref& u_1, const Unused_Ref& u_2 ) {
-		if( u_1._key != u_2._key ) {
+	bool operator != ( const Unused_Ref& u_ref ) {
+		if( u_ref._key != _key ) {
 			return true;
 		}
 		return false;
 	}
-}
+
+	friend std::ostream& operator << ( std::ostream& strm, const Unused_Ref& u_ref ) {
+		strm << u_ref._key;
+		return strm;
+	}
+};
 
 class Memory_Handler {
 public:
@@ -66,6 +75,7 @@ private:
 	Map < std::string, RmRef_h > memory_map;
 	Cache _cache;
 	Linked_List < Unused_Ref > unused_resources;
+	std::future< void > gbc_handler;
 };
 
 #endif /* MEMORY_H_MEMORYHANDLER_H_ */

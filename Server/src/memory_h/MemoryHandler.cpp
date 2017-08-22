@@ -1,6 +1,8 @@
 #include "MemoryHandler.h"
 
-Memory_Handler::Memory_Handler() : _cache( CACHE_CAPACITY ) { }
+Memory_Handler::Memory_Handler() : _cache( CACHE_CAPACITY ) {
+	gbc_handler = std::async( std::launch::async, &Memory_Handler::run_garbage_collector, this );
+}
 
 bool Memory_Handler::is_valid( std::string key ) {
 	if( memory_map.contains( key ) ) {
@@ -28,7 +30,7 @@ std::string Memory_Handler::store_value( std::string key, char* value, char* c_i
 		memory_map.add( key, new_ref );
 
 		if( !_cache.is_full() ) {
-			_cache.add( key, value );
+			_cache.add( key, value, new_ref.ref_counter );
 		}
 
 		memory_map.display();
@@ -40,13 +42,13 @@ std::string Memory_Handler::store_value( std::string key, char* value, char* c_i
 
 std::string Memory_Handler::find_value( std::string key ) {
 	if( _cache.contains( key ) ) {
-		RmRef_h _container = memory_map.get( key );
+		RmRef_h& _container = memory_map.get( key );
 		_container.ref_counter++;
 		_cache.increment_counter( key );
 		return JSON_Handler::build_get_msg( key.c_str(), _cache.get( key ), _container._size );
 	}
 	if( memory_map.contains( key ) ) {
-		RmRef_h _container = memory_map.get( key );
+		RmRef_h& _container = memory_map.get( key );
 		_container.ref_counter++;
 		return JSON_Handler::build_get_msg( key.c_str(), _container._value, _container._size );
 	}
@@ -59,7 +61,7 @@ std::string Memory_Handler::find_value_set( char* data ) {
 	Linked_List < char* > value_list;
 
 	for( int i = 0; i < keys_list.size(); i++ ) {
-		RmRef_h _ref = memory_map.get( keys_list.get( i ) );
+		RmRef_h& _ref = memory_map.get( keys_list.get( i ) );
 		value_list.add( _ref._value );
 		_ref.ref_counter++;
 	}
@@ -99,38 +101,45 @@ void Memory_Handler::delete_from( char* key ) {
 
 void Memory_Handler::run_garbage_collector() {
 
-	_cache.update();
+	while( true ) {
 
-	for( int i = 0; i < memory_map.size(); i++ ) {
-		RmRef_h _current = memory_map.get( i );
-		if( _current.ref_counter > 0 )_current.ref_counter--;
-	}
+		std::this_thread::sleep_for( std::chrono::seconds( CACHE_PERIOD ) );
 
-	Node< std::string, RmRef_h >* curr_ref = memory_map.head();
+		std::cout << "GBC Started" << std::endl;
 
-	while( curr_ref != nullptr ) {
-		Unused_Ref u_ref = create_unused( curr_ref->_key );
-		if( unused_resources.contains( u_ref ) ) {
-			if( memory_map.get( u_ref._key ).ref_counter > 0 ) unused_resources.remove( u_ref );
-			else {
-				Unused_Ref ref = unused_resources.get( unused_resources.get_index_of( u_ref ) );
-				if( ref.tmp_counter >= 3 ) {
-					memory_map.remove( u_ref._key );
-					unused_resources.remove( u_ref );
-				} else {
-					ref.tmp_counter++;
+		_cache.update();
+
+		for( int i = 0; i < memory_map.size(); i++ ) {
+			RmRef_h& _ref = memory_map.get( i );
+			if( _ref.ref_counter > 0 ) _ref.ref_counter--;
+		}
+
+		Node< std::string, RmRef_h >* curr_ref = memory_map.head();
+
+		while( curr_ref != nullptr ) {
+			Unused_Ref u_ref = create_unused( curr_ref->_key );
+			if( unused_resources.contains( u_ref ) ) {
+				if( memory_map.get( u_ref._key ).ref_counter > 0 ) unused_resources.remove( u_ref );
+				else {
+					Unused_Ref& _ref = unused_resources.get( unused_resources.get_index_of( u_ref ) );
+					if( _ref.tmp_counter >= 3 ) {
+						memory_map.remove( u_ref._key );
+						unused_resources.remove( u_ref );
+					} else {
+						_ref.tmp_counter++;
+					}
+				}
+			} else if( curr_ref->_data.ref_counter == 0 && !unused_resources.contains( u_ref ) ) {
+				unused_resources.add( u_ref );
+			} else {
+				if( (!_cache.is_full() ) && ( curr_ref->_data.ref_counter >= 5 ) && ( !_cache.contains( curr_ref->_key ) ) ) {
+					_cache.add( curr_ref->_key, curr_ref->_data._value, curr_ref->_data.ref_counter );
 				}
 			}
-		} else if( ( curr_ref->_data.ref_counter == 0 ) && ( !unused_resources.contains( u_ref ) ) ) {
-			unused_resources.add( u_ref );
-		} else {
-			if( ( !_cache.is_full() ) && ( curr_ref->_data.ref_counter >= 5 ) && ( !_cache.contains( curr_ref->_key ) ) ) {
-				_cache.add( curr_ref->_key, curr_ref->_data._value );
-			}
+			curr_ref = curr_ref->_next;
 		}
 	}
 }
-
 
 Memory_Handler::~Memory_Handler() { }
 
