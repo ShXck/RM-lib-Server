@@ -14,14 +14,15 @@
 
 class Server {
 public:
-	Server();
+	Server( int mode );
 	void run();
-	void send( sf::TcpSocket& socket, std::string data );
+	void connect_as_passive();
 	virtual ~Server();
 private:
 	sf::TcpListener _listener;
 	sf::SocketSelector _selector;
-	std::vector<sf::TcpSocket*> active_clients;
+	sf::TcpSocket passive_socket;
+	std::vector< sf::TcpSocket* > active_clients;
 	Reader _reader;
 	Memory_Handler _handler;
 };

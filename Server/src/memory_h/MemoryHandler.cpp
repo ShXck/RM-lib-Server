@@ -4,7 +4,7 @@ Memory_Handler::Memory_Handler() : _cache( CACHE_CAPACITY ) {
 	gbc_handler = std::async( std::launch::async, &Memory_Handler::run_garbage_collector, this );
 }
 
-bool Memory_Handler::is_valid( std::string key ) {
+bool Memory_Handler::is_valid( str key ) {
 	if( memory_map.contains( key ) ) {
 		return false;
 	}
@@ -16,12 +16,12 @@ RmRef_h Memory_Handler::create_ref( int size, char* value, char* c_id ) {
 	return new_ref;
 }
 
-Unused_Ref Memory_Handler::create_unused( std::string key ) {
+Unused_Ref Memory_Handler::create_unused( str key ) {
 	Unused_Ref _unused( key );
 	return _unused;
 }
 
-std::string Memory_Handler::store_value( std::string key, char* value, char* c_id,  int size ) {
+str Memory_Handler::store_value( str key, char* value, char* c_id,  int size ) {
 
 	if( is_valid( key ) ) {
 
@@ -40,7 +40,7 @@ std::string Memory_Handler::store_value( std::string key, char* value, char* c_i
 	return JSON_Handler::build_msg( true, error::key_used_err() );
 }
 
-std::string Memory_Handler::find_value( std::string key ) {
+str Memory_Handler::find_value( str key ) {
 	if( _cache.contains( key ) ) {
 		RmRef_h& _container = memory_map.get( key );
 		_container.ref_counter++;
@@ -55,7 +55,7 @@ std::string Memory_Handler::find_value( std::string key ) {
 	return JSON_Handler::build_msg( true, error::key_not_found_err() );
 }
 
-std::string Memory_Handler::find_value_set( char* data ) {
+str Memory_Handler::find_value_set( char* data ) {
 
 	Linked_List< char* > keys_list = JSON_Handler::process_array( data, "keys" );
 	Linked_List < char* > value_list;
@@ -68,7 +68,7 @@ std::string Memory_Handler::find_value_set( char* data ) {
 	return JSON_Handler::build_set_msg( keys_list, value_list );
 }
 
-std::string Memory_Handler::delete_value( std::string key ) {
+str Memory_Handler::delete_value( str key ) {
 	if( memory_map.contains( key ) ) {
 		memory_map.remove( key );
 		memory_map.display();
@@ -77,7 +77,7 @@ std::string Memory_Handler::delete_value( std::string key ) {
 	return JSON_Handler::build_msg( true, error::key_not_found_err() );
 }
 
-std::string Memory_Handler::replace_value( std::string key, char* new_val ) {
+str Memory_Handler::replace_value( str key, char* new_val ) {
 	if( memory_map.contains( key ) ) {
 		RmRef_h& _ref = memory_map.get( key );
 		_ref._value = new_val;
@@ -88,8 +88,33 @@ std::string Memory_Handler::replace_value( std::string key, char* new_val ) {
 	return JSON_Handler::build_msg( true, error::key_not_found_err() );
 }
 
+void Memory_Handler::sync_data( str key, char* data, char* c_id, int size, int instruction ) {
+	switch ( instruction ) {
+		case 1: {
+			store_value( key, data, c_id, size );
+			break;
+		}
+		case 3: {
+			delete_value( key );
+			break;
+		}
+		case 5: {
+			replace_value( key, data );
+			break;
+		}
+		case 6: {
+			delete_from( c_id );
+			break;
+		}
+		default: {
+			std::cout << "SYNCHRONIZATION NOT ALLOWED FOR THIS ACTION" << std::endl;
+			break;
+		}
+	}
+}
+
 void Memory_Handler::delete_from( char* key ) {
-	Node< std::string, RmRef_h >* _current = memory_map.head();
+	Node< str, RmRef_h >* _current = memory_map.head();
 	while( _current != nullptr ) {
 		if( strcmp( _current->_data.client_id, key) == 0 ) {
 			memory_map.remove( _current->_key );
@@ -114,7 +139,7 @@ void Memory_Handler::run_garbage_collector() {
 			if( _ref.ref_counter > 0 ) _ref.ref_counter--;
 		}
 
-		Node< std::string, RmRef_h >* curr_ref = memory_map.head();
+		Node< str, RmRef_h >* curr_ref = memory_map.head();
 
 		while( curr_ref != nullptr ) {
 			Unused_Ref u_ref = create_unused( curr_ref->_key );

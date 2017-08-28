@@ -1,7 +1,7 @@
 #ifndef MEMORY_H_MEMORYHANDLER_H_
 #define MEMORY_H_MEMORYHANDLER_H_
 #define CACHE_CAPACITY 5
-#define CACHE_PERIOD 30
+#define CACHE_PERIOD 120
 #include "../data_structs/Map.h"
 #include <iostream>
 #include <string>
@@ -56,23 +56,26 @@ struct Unused_Ref {
 	}
 };
 
+typedef std::string str;
+
 class Memory_Handler {
 public:
 	Memory_Handler();
-	std::string store_value( std::string key, char* value, char* c_id, int size );
-	std::string find_value( std::string key );
-	std::string find_value_set( char* data );
-	std::string delete_value( std::string key );
-	std::string replace_value( std::string key, char* new_val );
+	str store_value( str key, char* value, char* c_id, int size );
+	str find_value( str key );
+	str find_value_set( char* data );
+	str delete_value( str key );
+	str replace_value( str key, char* new_val );
+	void sync_data( str key, char* data, char* c_id, int size, int instruction );
 	void delete_from( char* key );
 	virtual ~Memory_Handler();
 private:
-	bool is_valid( std::string key );
+	bool is_valid( str key );
 	RmRef_h create_ref( int size, char* value, char* c_id );
-	Unused_Ref create_unused( std::string key );
+	Unused_Ref create_unused( str key );
 	void run_garbage_collector();
 private:
-	Map < std::string, RmRef_h > memory_map;
+	Map < str, RmRef_h > memory_map;
 	Cache _cache;
 	Linked_List < Unused_Ref > unused_resources;
 	std::future< void > gbc_handler;

@@ -1,8 +1,19 @@
 #include "Server.h"
 
-Server::Server() {
-	_listener.listen( PORT_M );
-	_selector.add( _listener );
+Server::Server( int mode ) : _reader( active_clients[ 0 ] ) {
+
+	switch( mode ) {
+		case 0: {
+			_listener.listen( PORT_M );
+			_selector.add( _listener );
+			break;
+		}
+		case 1: {
+			_listener.listen( PORT_HA );
+			_selector.add( _listener );
+			break;
+		}
+	}
 }
 
 void Server::run() {
@@ -34,13 +45,11 @@ void Server::run() {
 	}
 }
 
-void Server::send( sf::TcpSocket& socket, std::string data ) {
-	sf::Packet _packet;
-	_packet << data;
-	socket.send( _packet );
+void Server::connect_as_passive() {
+	sf::IpAddress _address = sf::IpAddress::getLocalAddress();
+	passive_socket.setBlocking( false );
+	passive_socket.connect( _address, PORT_M );
 }
 
-Server::~Server() {
-	// TODO Auto-generated destructor stub
-}
+Server::~Server() { }
 

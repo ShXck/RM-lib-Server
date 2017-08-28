@@ -28,10 +28,11 @@ int main() {
 					int _mode = mode_selector.get_index_selected();
 					if( _mode == 0 ) {
 						_window.close();
-						Server _server;
+						Server _server ( 0 );
 						_server.run();
 					} else {
-						// start passive server.
+						Server _server( 1 );
+						_server.connect_as_passive();
 					}
 				}
 				}
