@@ -20,6 +20,7 @@ public:
 	static std::string build_get_msg( c_char key, c_char value, int size );
 	static std::string build_set_msg( Linked_List< char* > keys, Linked_List< char* > values );
 	static std::string build_sync_data( c_char key, c_char data, c_char c_id, int size, int instruction );
+	static std::string build_check_msg();
 	static rapidjson::Value& get_value( c_char json, c_char json_key );
 	static Linked_List < char* > process_array( c_char data, c_char arr_key );
 	virtual ~JSON_Handler();

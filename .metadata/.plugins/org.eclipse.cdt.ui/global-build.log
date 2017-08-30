@@ -1,144 +1,15 @@
-22:56:42 **** Incremental Build of configuration Debug for project Server ****
+22:12:49 **** Incremental Build of configuration Debug for project Server ****
 make all 
-Building file: ../src/server_h/Server.cpp
+Building file: ../src/server_h/Reader.cpp
 Invoking: GCC C++ Compiler
-g++ -I/home/marcelo/Documents/libs/rapidjson/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/server_h/Server.d" -MT"src/server_h/Server.o" -o "src/server_h/Server.o" "../src/server_h/Server.cpp"
-Finished building: ../src/server_h/Server.cpp
- 
-Building file: ../src/main.cpp
-Invoking: GCC C++ Compiler
-g++ -I/home/marcelo/Documents/libs/rapidjson/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.cpp"
-../src/main.cpp: In function ‘int main()’:
-../src/main.cpp:19:11: warning: enumeration value ‘Unknown’ not handled in switch [-Wswitch]
-     switch( _event.key.code ) {
-           ^
-../src/main.cpp:19:11: warning: enumeration value ‘A’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘B’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘C’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘D’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘E’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘F’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘G’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘H’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘I’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘J’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘K’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘L’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘M’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘N’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘O’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘P’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Q’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘R’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘S’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘T’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘U’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘V’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘W’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘X’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Y’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Z’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Num0’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Num1’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Num2’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Num3’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Num4’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Num5’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Num6’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Num7’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Num8’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Num9’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Escape’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘LControl’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘LShift’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘LAlt’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘LSystem’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘RControl’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘RShift’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘RAlt’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘RSystem’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Menu’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘LBracket’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘RBracket’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘SemiColon’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Comma’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Period’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Quote’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Slash’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘BackSlash’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Tilde’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Equal’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Dash’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Space’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘BackSpace’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Tab’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘PageUp’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘PageDown’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘End’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Home’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Insert’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Delete’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Add’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Subtract’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Multiply’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Divide’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Left’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Right’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Numpad0’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Numpad1’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Numpad2’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Numpad3’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Numpad4’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Numpad5’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Numpad6’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Numpad7’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Numpad8’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Numpad9’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘F1’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘F2’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘F3’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘F4’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘F5’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘F6’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘F7’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘F8’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘F9’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘F10’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘F11’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘F12’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘F13’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘F14’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘F15’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘Pause’ not handled in switch [-Wswitch]
-../src/main.cpp:19:11: warning: enumeration value ‘KeyCount’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘Resized’ not handled in switch [-Wswitch]
-    switch( _event.type ) {
-          ^
-../src/main.cpp:17:10: warning: enumeration value ‘LostFocus’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘GainedFocus’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘TextEntered’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘KeyPressed’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘MouseWheelMoved’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘MouseWheelScrolled’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘MouseButtonPressed’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘MouseButtonReleased’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘MouseMoved’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘MouseEntered’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘MouseLeft’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘JoystickButtonPressed’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘JoystickButtonReleased’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘JoystickMoved’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘JoystickConnected’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘JoystickDisconnected’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘TouchBegan’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘TouchMoved’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘TouchEnded’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘SensorChanged’ not handled in switch [-Wswitch]
-../src/main.cpp:17:10: warning: enumeration value ‘Count’ not handled in switch [-Wswitch]
-Finished building: ../src/main.cpp
+g++ -I/home/marcelo/Documents/libs/rapidjson/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/server_h/Reader.d" -MT"src/server_h/Reader.o" -o "src/server_h/Reader.o" "../src/server_h/Reader.cpp"
+Finished building: ../src/server_h/Reader.cpp
  
 Building target: Server
 Invoking: GCC C++ Linker
 g++  -o "Server"  ./src/server_h/Encrypter.o ./src/server_h/JSONHandler.o ./src/server_h/Reader.o ./src/server_h/Server.o  ./src/memory_h/Cache.o ./src/memory_h/MemoryHandler.o  ./src/ModeSelector.o ./src/error_handler.o ./src/main.o ./src/utility.o   -lsfml-graphics -lpthread -lsfml-audio -lsfml-network -lsfml-window -lsfml-system
 Finished building target: Server
  
+22:13:08 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.

@@ -10,14 +10,17 @@
 #include <string>
 #include <vector>
 #include "../memory_h/MemoryHandler.h"
-
+#include "StatusChecker.h"
 
 class Server {
 public:
 	Server( int mode );
 	void run();
-	void connect_as_passive();
 	virtual ~Server();
+private:
+	//void switch_to_active();
+	void connect_as_passive();
+	void run_passive();
 private:
 	sf::TcpListener _listener;
 	sf::SocketSelector _selector;
@@ -25,6 +28,9 @@ private:
 	std::vector< sf::TcpSocket* > active_clients;
 	Reader _reader;
 	Memory_Handler _handler;
+	Status_Checker _checker;
+
+	bool is_passive;
 };
 
 #endif /* SERVER_H_SERVER_H_ */

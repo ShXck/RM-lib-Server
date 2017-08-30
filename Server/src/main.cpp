@@ -31,8 +31,8 @@ int main() {
 						Server _server ( 0 );
 						_server.run();
 					} else {
+						_window.close();
 						Server _server( 1 );
-						_server.connect_as_passive();
 					}
 				}
 				}

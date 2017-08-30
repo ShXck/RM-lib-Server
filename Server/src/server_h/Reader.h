@@ -7,7 +7,7 @@
 #define GET_SET_INSTR 4
 #define REPLC_INSTR 5
 #define DISCONNECT_INSTR 6
-#define SYNC_INSTR 7
+#define CHECK_INSTR 8
 
 #include <string>
 #include <iostream>
@@ -29,15 +29,16 @@ struct Synchronizer {
 
 class Reader {
 public:
-	Reader( sf::TcpSocket* p_socket );
-	void read( sf::Packet packet, sf::TcpSocket* socket, Memory_Handler* handler );
+	Reader();
+	void read( sf::Packet packet, sf::TcpSocket* socket, Memory_Handler* handler, sf::TcpSocket* passive_socket );
+	void read( std::string message, Memory_Handler* handler );
+	Encrypter& enrypter();
 	virtual ~Reader();
 private:
-	std::string process( int instruction, std::string data, Memory_Handler* handler );
+	std::string process( int instruction, std::string data, Memory_Handler* handler, sf::TcpSocket* passive_socket );
 private:
 	Encrypter _encrypter;
 	Synchronizer _synchronizer;
-	sf::TcpSocket* passive_socket;
 };
 
 #endif /* SERVER_H_READER_H_ */

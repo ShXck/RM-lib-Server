@@ -115,9 +115,24 @@ std::string JSON_Handler::build_sync_data( c_char key, c_char data, c_char c_id,
 		_doc.AddMember( "client_id", client_str, _alloc );
 	}
 
-	_doc.AddMember( "memory_instruction", instruction, _alloc );
+	_doc.AddMember( "instruction", instruction, _alloc );
 	_doc.AddMember( "size", size, _alloc );
-	_doc.AddMember( "instruction", 7, _alloc );
+
+	rapidjson::StringBuffer str_buffer;
+	Writer _writer( str_buffer );
+	_doc.Accept( _writer );
+
+	return str_buffer.GetString();
+}
+
+std::string JSON_Handler::build_check_msg() {
+
+	rapidjson::Document _doc;
+	_doc.SetObject();
+	Alloc _alloc = _doc.GetAllocator();
+
+	_doc.AddMember( "instruction", 8, _alloc );
+	_doc.AddMember( "key", "NONE", _alloc );
 
 	rapidjson::StringBuffer str_buffer;
 	Writer _writer( str_buffer );
