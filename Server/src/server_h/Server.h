@@ -14,11 +14,11 @@
 
 class Server {
 public:
-	Server( int mode );
+	Server( int mode, bool run_checker );
 	void run();
 	virtual ~Server();
 private:
-	//void switch_to_active();
+	void switch_to_active();
 	void connect_as_passive();
 	void run_passive();
 private:
@@ -29,7 +29,6 @@ private:
 	Reader _reader;
 	Memory_Handler _handler;
 	Status_Checker _checker;
-
 	bool is_passive;
 };
 

@@ -1,6 +1,6 @@
 #include "Server.h"
 
-Server::Server( int mode ) : is_passive( false ) {
+Server::Server( int mode, bool run_checker ) : _checker( &passive_socket, run_checker ), is_passive( false ) {
 
 	switch( mode ) {
 		case 0: {
@@ -48,19 +48,16 @@ void Server::connect_as_passive() {
 	sf::IpAddress _address = sf::IpAddress::getLocalAddress();
 	passive_socket.setBlocking( false );
 	passive_socket.connect( _address, PORT_M );
-	//_checker.set_sender( passive_socket );
-	//_checker.check_status( &_reader.enrypter() );
 	is_passive = true;
 	run_passive();
-	_checker.check_status(); //TODO: Test if it's sending the message
 }
 
-/*void Server::switch_to_active() {
-	passive_socket->disconnect();
+void Server::switch_to_active() {
+	passive_socket.disconnect();
 	_listener.listen( PORT_HA );
 	_selector.add( _listener );
 	run();
-}*/
+}
 
 void Server::run_passive() {
 
@@ -69,14 +66,24 @@ void Server::run_passive() {
 	sf::Packet _packet;
 	std::string _message;
 
+	_checker.check_response( &_message );
+
 	while( is_passive ) {
 		if( passive_socket.receive( _packet ) == sf::Socket::Done ) {
 			if( _packet >> _message ) {
 				_reader.read( _message, &_handler );
 			}
 		}
+		if( !_checker.get_main_status() ) {
+			is_passive = false;
+			switch_to_active();
+		}
 	}
 }
 
-Server::~Server() { }
+Server::~Server() {
+	_listener.close();
+	_selector.clear();
+	passive_socket.disconnect();
+}
 

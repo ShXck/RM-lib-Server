@@ -38,7 +38,8 @@ src/main.o: ../src/main.cpp ../src/server_h/Server.h \
  ../src/server_h/../memory_h/../server_h/JSONHandler.h \
  ../src/server_h/../memory_h/../data_structs/LinkedList.h \
  ../src/server_h/../memory_h/Cache.h ../src/server_h/../error_handler.hpp \
- ../src/server_h/../data_structs/Map.h ../src/ModeSelector.h
+ ../src/server_h/../data_structs/Map.h ../src/server_h/StatusChecker.h \
+ ../src/ModeSelector.h
 
 ../src/server_h/Server.h:
 
@@ -125,5 +126,7 @@ src/main.o: ../src/main.cpp ../src/server_h/Server.h \
 ../src/server_h/../error_handler.hpp:
 
 ../src/server_h/../data_structs/Map.h:
+
+../src/server_h/StatusChecker.h:
 
 ../src/ModeSelector.h:

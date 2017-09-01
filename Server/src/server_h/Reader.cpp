@@ -59,7 +59,7 @@ std::string Reader::process( int instruction, std::string data, Memory_Handler* 
 			break;
 		}
 		case CHECK_INSTR: {
-			return_msg = "{}";
+			return_msg = data;
 			break;
 		}
 	}

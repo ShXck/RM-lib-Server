@@ -1,3 +1,5 @@
+#define MAIN_MODE 0
+#define HA_MODE 1
 #include <iostream>
 #include "server_h/Server.h"
 #include <SFML/Graphics.hpp>
@@ -28,11 +30,11 @@ int main() {
 					int _mode = mode_selector.get_index_selected();
 					if( _mode == 0 ) {
 						_window.close();
-						Server _server ( 0 );
+						Server _server ( MAIN_MODE, false );
 						_server.run();
 					} else {
 						_window.close();
-						Server _server( 1 );
+						Server _server( HA_MODE, true );
 					}
 				}
 				}

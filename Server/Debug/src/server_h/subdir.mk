@@ -7,19 +7,22 @@ CPP_SRCS += \
 ../src/server_h/Encrypter.cpp \
 ../src/server_h/JSONHandler.cpp \
 ../src/server_h/Reader.cpp \
-../src/server_h/Server.cpp 
+../src/server_h/Server.cpp \
+../src/server_h/StatusChecker.cpp 
 
 OBJS += \
 ./src/server_h/Encrypter.o \
 ./src/server_h/JSONHandler.o \
 ./src/server_h/Reader.o \
-./src/server_h/Server.o 
+./src/server_h/Server.o \
+./src/server_h/StatusChecker.o 
 
 CPP_DEPS += \
 ./src/server_h/Encrypter.d \
 ./src/server_h/JSONHandler.d \
 ./src/server_h/Reader.d \
-./src/server_h/Server.d 
+./src/server_h/Server.d \
+./src/server_h/StatusChecker.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

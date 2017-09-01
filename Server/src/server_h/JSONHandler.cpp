@@ -141,6 +141,7 @@ std::string JSON_Handler::build_check_msg() {
 	return str_buffer.GetString();
 }
 
+
 rapidjson::Value& JSON_Handler::get_value( c_char json, c_char json_key ) {
 
 	rapidjson::Document _doc;

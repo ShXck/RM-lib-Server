@@ -1,15 +1,108 @@
-22:12:49 **** Incremental Build of configuration Debug for project Server ****
+00:51:17 **** Incremental Build of configuration Debug for project Server ****
 make all 
-Building file: ../src/server_h/Reader.cpp
+Building file: ../src/server_h/StatusChecker.cpp
 Invoking: GCC C++ Compiler
-g++ -I/home/marcelo/Documents/libs/rapidjson/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/server_h/Reader.d" -MT"src/server_h/Reader.o" -o "src/server_h/Reader.o" "../src/server_h/Reader.cpp"
-Finished building: ../src/server_h/Reader.cpp
+g++ -I/home/marcelo/Documents/libs/rapidjson/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/server_h/StatusChecker.d" -MT"src/server_h/StatusChecker.o" -o "src/server_h/StatusChecker.o" "../src/server_h/StatusChecker.cpp"
+Finished building: ../src/server_h/StatusChecker.cpp
  
 Building target: Server
 Invoking: GCC C++ Linker
-g++  -o "Server"  ./src/server_h/Encrypter.o ./src/server_h/JSONHandler.o ./src/server_h/Reader.o ./src/server_h/Server.o  ./src/memory_h/Cache.o ./src/memory_h/MemoryHandler.o  ./src/ModeSelector.o ./src/error_handler.o ./src/main.o ./src/utility.o   -lsfml-graphics -lpthread -lsfml-audio -lsfml-network -lsfml-window -lsfml-system
+g++  -o "Server"  ./src/server_h/Encrypter.o ./src/server_h/JSONHandler.o ./src/server_h/Reader.o ./src/server_h/Server.o ./src/server_h/StatusChecker.o  ./src/memory_h/Cache.o ./src/memory_h/MemoryHandler.o  ./src/ModeSelector.o ./src/error_handler.o ./src/main.o ./src/utility.o   -lsfml-graphics -lpthread -lsfml-audio -lsfml-network -lsfml-window -lsfml-system
 Finished building target: Server
  
-22:13:08 **** Incremental Build of configuration Debug for project Server ****
+00:51:25 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+00:53:13 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+22:17:13 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+22:20:07 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+22:23:48 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+22:26:39 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+22:28:09 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+22:30:21 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+22:31:14 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+22:32:19 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+22:33:50 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+22:34:45 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+22:36:01 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+22:40:58 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+22:44:51 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+22:53:35 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+22:55:45 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+22:57:29 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+23:22:07 **** Incremental Build of configuration Debug for project Server ****
+make all 
+Building file: ../src/server_h/StatusChecker.cpp
+Invoking: GCC C++ Compiler
+g++ -I/home/marcelo/Documents/libs/rapidjson/include/ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/server_h/StatusChecker.d" -MT"src/server_h/StatusChecker.o" -o "src/server_h/StatusChecker.o" "../src/server_h/StatusChecker.cpp"
+Finished building: ../src/server_h/StatusChecker.cpp
+ 
+Building target: Server
+Invoking: GCC C++ Linker
+g++  -o "Server"  ./src/server_h/Encrypter.o ./src/server_h/JSONHandler.o ./src/server_h/Reader.o ./src/server_h/Server.o ./src/server_h/StatusChecker.o  ./src/memory_h/Cache.o ./src/memory_h/MemoryHandler.o  ./src/ModeSelector.o ./src/error_handler.o ./src/main.o ./src/utility.o   -lsfml-graphics -lpthread -lsfml-audio -lsfml-network -lsfml-window -lsfml-system
+Finished building target: Server
+ 
+00:19:52 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+00:27:37 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+00:31:43 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+00:32:17 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+00:32:39 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+00:53:14 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+00:55:24 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+00:57:52 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+01:03:15 **** Incremental Build of configuration Debug for project Server ****
+make all 
+make: Nothing to be done for 'all'.
+01:04:23 **** Incremental Build of configuration Debug for project Server ****
 make all 
 make: Nothing to be done for 'all'.
