@@ -31,7 +31,6 @@ std::string Reader::process( int instruction, std::string data, Memory_Handler* 
 			int _size = JSON_Handler::get_value( data.c_str(), "size" ).GetInt();
 			std::string c_id = JSON_Handler::get_value( data.c_str(), "id" ).GetString();
 			return_msg = handler->store_value( _key, strdup( _val.c_str() ), strdup( c_id.c_str() ), _size );
-			_synchronizer.synchronize( _key, strdup( _val.c_str() ), strdup( c_id.c_str() ), _size, instruction, passive_socket, &_encrypter );
 			break;
 		}
 		case GET_INSTR: {
@@ -40,7 +39,6 @@ std::string Reader::process( int instruction, std::string data, Memory_Handler* 
 		}
 		case DEL_INSTR: {
 			return_msg = handler->delete_value( _key );
-			_synchronizer.synchronize( _key, strdup( "" ), strdup( "" ) , 0, instruction, passive_socket, &_encrypter );
 			break;
 		}
 		case GET_SET_INSTR: {
@@ -50,12 +48,10 @@ std::string Reader::process( int instruction, std::string data, Memory_Handler* 
 		case REPLC_INSTR: {
 			std::string new_data = JSON_Handler::get_value( data.c_str(), "new_value" ).GetString();
 			return_msg = handler->replace_value( _key, strdup( new_data .c_str() ) );
-			_synchronizer.synchronize( _key, strdup( new_data.c_str() ), strdup( "" ), 0, instruction, passive_socket, &_encrypter );
 			break;
 		}
 		case DISCONNECT_INSTR: {
 			handler->delete_from( strdup( _key.c_str() ) );
-			_synchronizer.synchronize( "", strdup( "" ), strdup( _key.c_str() ), 0, instruction, passive_socket, &_encrypter );
 			break;
 		}
 		case CHECK_INSTR: {
@@ -68,12 +64,12 @@ std::string Reader::process( int instruction, std::string data, Memory_Handler* 
 
 void Reader::read( std::string message, Memory_Handler* handler ) {  // { key, data, client_id, size, instruction }
 
-	std::cout << message << std::endl;
-
 	std::string decrypted_msg = _encrypter.apply( message );
 
 	int _instruction = JSON_Handler::get_value( decrypted_msg.c_str(), "instruction" ).GetInt();
 	std::string _key = JSON_Handler::get_value( decrypted_msg.c_str(), "key" ).GetString();
+
+	std::cout << decrypted_msg << std::endl;
 
 	switch( _instruction ) {
 		case NEW_INSTR: {

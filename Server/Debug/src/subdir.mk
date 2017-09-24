@@ -4,21 +4,24 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/MemoryMonitor.cpp \
 ../src/ModeSelector.cpp \
+../src/ServerII.cpp \
 ../src/error_handler.cpp \
-../src/main.cpp \
 ../src/utility.cpp 
 
 OBJS += \
+./src/MemoryMonitor.o \
 ./src/ModeSelector.o \
+./src/ServerII.o \
 ./src/error_handler.o \
-./src/main.o \
 ./src/utility.o 
 
 CPP_DEPS += \
+./src/MemoryMonitor.d \
 ./src/ModeSelector.d \
+./src/ServerII.d \
 ./src/error_handler.d \
-./src/main.d \
 ./src/utility.d 
 
 

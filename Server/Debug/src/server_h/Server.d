@@ -37,6 +37,7 @@ src/server_h/Server.o: ../src/server_h/Server.cpp \
  ../src/server_h/../memory_h/../error_handler.hpp \
  ../src/server_h/../memory_h/../server_h/JSONHandler.h \
  ../src/server_h/../memory_h/../data_structs/LinkedList.h \
+ ../src/server_h/../memory_h/../MemoryMonitor.h \
  ../src/server_h/../memory_h/Cache.h ../src/server_h/../error_handler.hpp \
  ../src/server_h/../data_structs/Map.h ../src/server_h/StatusChecker.h
 
@@ -119,6 +120,8 @@ src/server_h/Server.o: ../src/server_h/Server.cpp \
 ../src/server_h/../memory_h/../server_h/JSONHandler.h:
 
 ../src/server_h/../memory_h/../data_structs/LinkedList.h:
+
+../src/server_h/../memory_h/../MemoryMonitor.h:
 
 ../src/server_h/../memory_h/Cache.h:
 

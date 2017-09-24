@@ -1,6 +1,6 @@
 #include "Server.h"
 
-Server::Server( int mode, bool run_checker ) : _checker( &passive_socket, run_checker ), is_passive( false ) {
+Server::Server( int mode, bool run_checker ) : is_passive( false ) {
 
 	switch( mode ) {
 		case 0: {
@@ -9,6 +9,7 @@ Server::Server( int mode, bool run_checker ) : _checker( &passive_socket, run_ch
 			break;
 		}
 		case 1: {
+			checker_time_handler = std::async( std::launch::async, &Server::run_checker, this );
 			connect_as_passive();
 			break;
 		}
@@ -66,18 +67,48 @@ void Server::run_passive() {
 	sf::Packet _packet;
 	std::string _message;
 
-	_checker.check_response( &_message );
-
 	while( is_passive ) {
 		if( passive_socket.receive( _packet ) == sf::Socket::Done ) {
 			if( _packet >> _message ) {
 				_reader.read( _message, &_handler );
 			}
 		}
-		if( !_checker.get_main_status() ) {
-			is_passive = false;
-			switch_to_active();
+	}
+}
+
+void Server::run_checker() {
+	while( true ) {
+		std::this_thread::sleep_for( std::chrono::seconds( 30 ) );
+		std::cout << "CHECKING STATUS" << std::endl;
+		sf::Packet check_packet;
+		check_packet << _reader.enrypter().apply( JSON_Handler::build_check_msg() ) ;
+		passive_socket.send( check_packet );
+		wait_for_response();
+	}
+}
+
+void Server::wait_for_response() {
+	sf::Packet _packet;
+	std::string _message;
+
+	std::time_t _start, _end;
+	double _elapsed;
+
+	time( &_start );
+
+	while( _elapsed < 2 ) {
+		time( &_end );
+		_elapsed = difftime( _end, _start );
+		if ( passive_socket.receive( _packet ) == sf::Socket::Done ) {
+			if( _packet >> _message ) {
+				break;
+			}
 		}
+	}
+
+	if( _elapsed >= 2 ) {
+		switch_to_active();
+		is_passive = false;
 	}
 }
 

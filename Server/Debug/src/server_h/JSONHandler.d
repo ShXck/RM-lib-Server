@@ -36,6 +36,7 @@ src/server_h/JSONHandler.o: ../src/server_h/JSONHandler.cpp \
  ../src/server_h/../memory_h/../error_handler.hpp \
  ../src/server_h/../memory_h/../server_h/JSONHandler.h \
  ../src/server_h/../memory_h/../data_structs/LinkedList.h \
+ ../src/server_h/../memory_h/../MemoryMonitor.h \
  ../src/server_h/../memory_h/Cache.h
 
 ../src/server_h/JSONHandler.h:
@@ -111,5 +112,7 @@ src/server_h/JSONHandler.o: ../src/server_h/JSONHandler.cpp \
 ../src/server_h/../memory_h/../server_h/JSONHandler.h:
 
 ../src/server_h/../memory_h/../data_structs/LinkedList.h:
+
+../src/server_h/../memory_h/../MemoryMonitor.h:
 
 ../src/server_h/../memory_h/Cache.h:

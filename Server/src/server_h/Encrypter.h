@@ -6,6 +6,11 @@
 class Encrypter {
 public:
 	Encrypter();
+	/**
+	 * Encripta y desencripta información.
+	 * @param data
+	 * @return el mensaje encriptado/desencriptado
+	 */
 	std::string apply( std::string data );
 	virtual ~Encrypter();
 };

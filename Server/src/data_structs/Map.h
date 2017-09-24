@@ -210,6 +210,10 @@ public:
 		return _head;
 	}
 
+	std::size_t node_size() {
+		return sizeof( Node< Key, Value > );
+	}
+
 	~Map() {
 		while( !is_empty() ) {
 			remove_at( 0 );

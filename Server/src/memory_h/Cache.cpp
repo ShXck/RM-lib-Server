@@ -20,6 +20,12 @@ void Cache::update( ) {
 	}
 }
 
+void Cache::update_value( std::string key, char* new_val ) {
+	Cache_Resource_Container& _container = cache_memory.get( key );
+	_container._value = new_val;
+	increment_counter( key );
+}
+
 void Cache::decrement_counters() {
 	for( int i = 0; i < cache_memory.size(); i++ ) {
 		Cache_Resource_Container& curr_container = cache_memory.get( i );
@@ -50,6 +56,16 @@ char* Cache::get( std::string key ) {
 
 bool Cache::is_full() {
 	return cache_memory.size() == _capacity;
+}
+
+std::string Cache::to_string() {
+	std::string _result = "";
+	for( int i = 0; i < cache_memory.size(); i++ ) {
+		Cache_Resource_Container& current_cont = cache_memory.get( i );
+		_result += std::string( current_cont._value );
+		_result += " - ";
+	}
+	return _result;
 }
 
 Cache::~Cache() { }

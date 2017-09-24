@@ -1,7 +1,8 @@
 #include "MemoryHandler.h"
 
-Memory_Handler::Memory_Handler() : _cache( CACHE_CAPACITY ) {
+Memory_Handler::Memory_Handler() : _cache( CACHE_CAPACITY ), memory_allocated( 0 ), _monitor( memory_allocated, _cache.to_string() ) {
 	gbc_handler = std::async( std::launch::async, &Memory_Handler::run_garbage_collector, this );
+	_monitor.run();
 }
 
 bool Memory_Handler::is_valid( str key ) {
@@ -31,9 +32,13 @@ str Memory_Handler::store_value( str key, char* value, char* c_id,  int size ) {
 
 		if( !_cache.is_full() ) {
 			_cache.add( key, value, new_ref.ref_counter );
+			_monitor.update( 1, _cache.to_string() );
 		}
 
 		memory_map.display();
+
+		memory_allocated += memory_map.node_size();
+		_monitor.update( 0, std::to_string( memory_allocated ) );
 
 		return JSON_Handler::build_msg( false, error::key_is_valid() );
 	}
@@ -72,12 +77,22 @@ str Memory_Handler::delete_value( str key ) {
 	if( memory_map.contains( key ) ) {
 		memory_map.remove( key );
 		memory_map.display();
+		memory_allocated -= memory_map.node_size();
+		_monitor.update( 0, std::to_string( memory_allocated ) );
 		return JSON_Handler::build_msg( false, error::key_is_valid() );
 	}
 	return JSON_Handler::build_msg( true, error::key_not_found_err() );
 }
 
 str Memory_Handler::replace_value( str key, char* new_val ) {
+	if( _cache.contains( key ) ) {
+		_cache.update_value( key, new_val );
+		RmRef_h& r = memory_map.get( key );
+		r._value = new_val;
+		r.ref_counter++;
+		_monitor.update( 1, _cache.to_string() );
+		return JSON_Handler::build_msg( false, error::key_is_valid() );
+	}
 	if( memory_map.contains( key ) ) {
 		RmRef_h& _ref = memory_map.get( key );
 		_ref._value = new_val;
@@ -118,6 +133,8 @@ void Memory_Handler::delete_from( char* key ) {
 	while( _current != nullptr ) {
 		if( strcmp( _current->_data.client_id, key) == 0 ) {
 			memory_map.remove( _current->_key );
+			memory_allocated -= memory_map.node_size();
+			_monitor.update( 0, std::to_string( memory_allocated ) );
 		}
 		_current = _current->_next;
 	}
@@ -163,6 +180,8 @@ void Memory_Handler::run_garbage_collector() {
 			}
 			curr_ref = curr_ref->_next;
 		}
+
+		_monitor.update( 1, _cache.to_string() );
 	}
 }
 
